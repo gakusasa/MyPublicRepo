@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LeetCode {
@@ -18,5 +19,21 @@ public class LeetCode {
             }
         }
         return result;
+    }
+
+    public int lengthOfLIS(int[] nums) {
+        int len = nums.length;
+        int[] result = new int[len+1];
+        int ans = 1;
+        Arrays.fill(result, 1);
+        for(int i = 1 ; i < len ; i++) {
+            for(int j=0; j<i ; j++) {
+                if(nums[i] > nums[j]) {
+                    result[i] = Math.max(result[i], result[j]+1);
+                    ans = Math.max(ans, result[i]);
+                }
+            }
+        }
+        return ans;
     }
 }
